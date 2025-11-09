@@ -20,7 +20,6 @@ headers = {
 
 print("fix endpoints Rubika")
 
-
 for endpoint in endpoints:
     data = {
         "url": webhook_url,
@@ -28,14 +27,13 @@ for endpoint in endpoints:
     }
     
     try:
-        response = requests.post(api_url, json=data, headers=headers, timeout=30)
-        result = response.json()
+        response = requests.post(api_url, json=data, headers=headers, timeout=30).json()
         
         print(f"{endpoint}:")
-        if result.get('status') == 'OK':
-            print(f"   ✅ done - status: {result.get('data', {}).get('status', 'Unknown')}")
+        if response.get('status') == 'OK':
+            print(f"   ✅ done - status: {response.get('data', {}).get('status', 'Unknown')}")
         else:
-            print(f"   ❌ error - response: {result}")
+            print(f"   ❌ error - response: {response}")
             
     except Exception as e:
         print(f"{endpoint}:")
