@@ -1,0 +1,46 @@
+import requests
+import time
+
+token = "token_bot"
+webhook_url = "https://yourdomain.com/bot.php"
+api_url = f"https://botapi.rubika.ir/v3/{token}/updateBotEndpoints"
+
+
+endpoints = [
+    "ReceiveUpdate",
+    "ReceiveInlineMessage", 
+    "ReceiveQuery",
+    "GetSelectionItem",
+    "SearchSelectionItems"
+]
+
+headers = {
+    "Content-Type": "application/json"
+}
+
+print("fix endpoints Rubika")
+
+
+for endpoint in endpoints:
+    data = {
+        "url": webhook_url,
+        "type": endpoint
+    }
+    
+    try:
+        response = requests.post(api_url, json=data, headers=headers, timeout=30)
+        result = response.json()
+        
+        print(f"{endpoint}:")
+        if result.get('status') == 'OK':
+            print(f"   ✅ done - status: {result.get('data', {}).get('status', 'Unknown')}")
+        else:
+            print(f"   ❌ error - response: {result}")
+            
+    except Exception as e:
+        print(f"{endpoint}:")
+        print(f"   ❌ error Network: {e}")
+    
+    time.sleep(0.5)  
+
+print("the end!")
