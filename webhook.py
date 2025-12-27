@@ -18,7 +18,7 @@ headers = {
     "Content-Type": "application/json"
 }
 
-print("fix endpoints Rubika")
+print("setting up Rubika endpoints ...")
 
 for endpoint in endpoints:
     data = {
@@ -42,3 +42,4 @@ for endpoint in endpoints:
     time.sleep(0.5)  
 
 print("the end!")
+
