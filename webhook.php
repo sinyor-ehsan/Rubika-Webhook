@@ -3,7 +3,7 @@
 $token = "token_bot";
 $url_webhook = "https://yourdomain.com/bot.php";
 
-echo "fix endpoint Rubika\n";
+echo "setting up Rubika endpoints ...\n";
 $endpoints = [
     "ReceiveUpdate",
     "ReceiveInlineMessage",
@@ -45,5 +45,6 @@ foreach ($endpoints as $endpoint) {
 }
 
 echo "the end!";
+
 
 ?>
